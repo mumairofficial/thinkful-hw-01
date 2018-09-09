@@ -1,15 +1,19 @@
+// core dependencies
 const http = require('http');
 const https = require('https');
 const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
 
+// self cooked modules
 const env = require('./env');
 const httpsServerConfig = require('./utils').httpsServerConfig;
 const logMessage = require('./utils').logMessage;
 
 const handlers = require('./app/handlers');
 
-// Servers initiation for both (HTTP & HTTPS) 
+/**
+ *  Servers initiation for both (HTTP & HTTPS) 
+ */
 const serverHttp = http.createServer((req, res) => {
   serverLogic(req, res);
 });
