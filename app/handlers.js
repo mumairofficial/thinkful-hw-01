@@ -4,8 +4,9 @@ const hello = (data, callback) => {
   })
 }
 
-const greetings = ({payload}, callback) => {
+// greeting handler/controller which expects name in request body
 
+const greetings = ({payload}, callback) => {
   const name = JSON.parse(payload).name || 'John Doe'
 
   typeof name === 'string'
@@ -14,6 +15,11 @@ const greetings = ({payload}, callback) => {
 }
 
 const notFound = (data, callback) => callback(404);
+
+
+/**
+ * Final handlers registry to export out for router and server
+ */
 
 module.exports = {
   hello, notFound, greetings

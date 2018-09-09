@@ -8,8 +8,8 @@ const httpsServerConfig = require('./utils').httpsServerConfig;
 const logMessage = require('./utils').logMessage;
 
 const handlers = require('./app/handlers');
-const routes = require('./app/routes');
 
+// Servers initiation for both (HTTP & HTTPS) 
 const serverHttp = http.createServer((req, res) => {
   serverLogic(req, res);
 });
@@ -17,6 +17,7 @@ const serverHttps = https.createServer(httpsServerConfig, (req, res) => {
   serverLogic(req, res);
 });
 
+// Combined logic for each server
 function serverLogic(req, res) {
   const decoder = new StringDecoder('utf-8');
 
@@ -55,6 +56,7 @@ function serverLogic(req, res) {
 
 }
 
+// Method to start servers listening on ports mentioned in environment
 const initiateServer = () => {
   serverHttp.listen(env.port.http, () => {
     logMessage('Http  Server Listening on PORT: ' + env.port.http);
@@ -64,4 +66,5 @@ const initiateServer = () => {
   });
 };
 
+// Method exposed out of module
 module.exports = initiateServer;
